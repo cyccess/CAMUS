@@ -1,0 +1,76 @@
+﻿@model CAMUS.Models.News
+
+@{
+    ViewBag.Title = "新闻详情";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>新闻详情</h2>
+
+<div class="news-details-wrap">
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDelete)
+        </dt>
+
+        <dd>
+            @(Model.IsDelete ? "是" : "否")
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Link)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Link)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            <img src="@Model.Image" alt="Alternate Text" width="200" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.Content)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @if (!Model.IsDelete) { 
+    @Html.ActionLink("编辑新闻", "NewsEdit", new { id = Model.Id }) <span>|</span>
+                                                                }
+    @Html.ActionLink("返回列表", "News")
+</p>

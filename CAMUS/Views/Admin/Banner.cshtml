@@ -1,0 +1,43 @@
+﻿@model IEnumerable<CAMUS.Models.Banner>
+
+@{
+    ViewBag.Title = "BANNER管理";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>BANNER</h2>
+
+<div class="entry-banner-wrap">
+    <ul class="entry-banner-list clearfix">
+        @foreach (var item in Model)
+        {
+            <li class="g-item">
+                <div class="g-img-info">
+                    <a href="@item.Path" target="_blank">
+                        <img src="@item.Path">
+                    </a>
+                </div>
+                <div class="g-img-op" data-id="@item.Id">
+                    <a class="" href="javascript:;" title="删除"><i class="glyphicon glyphicon-trash"></i></a>
+                </div>
+            </li>
+        }
+        <li class="g-add-img">
+            <div class="g-add-panel fileinput-button">
+                <i class="glyphicon glyphicon-plus"></i>
+                <span class="img-text">选择图片</span>
+                <input type="file" id="fileupload" name="image" data-url="/admin/BannerUpload" multiple>
+            </div>
+        </li>
+    </ul>
+</div>
+@section Scripts{
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/jquery.ui.widget.js"></script>
+    <script src="~/Scripts/jquery.iframe-transport.js"></script>
+    <script src="~/Scripts/jquery.fileupload.js"></script>
+    <script src="~/Scripts/imgupload.js"></script>
+    <script>
+        new window.picture();
+    </script>
+}

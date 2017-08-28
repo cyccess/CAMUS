@@ -1,0 +1,54 @@
+﻿@model IEnumerable<CAMUS.Models.News>
+
+@{
+    ViewBag.Title = "新闻列表";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>新闻列表</h2>
+
+<p>
+    @Html.ActionLink("创建新闻", "NewsCreate")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsDelete)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <div class="news-item-title">@Html.DisplayFor(modelItem => item.Title)</div>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Author)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateDate)
+        </td>
+        <td>
+            @(item.IsDelete ?　"是" : "否")
+        </td>
+        <td>
+            @Html.ActionLink("编辑", "NewsEdit", new { id=item.Id }) |
+            @Html.ActionLink("详情", "NewsDetails", new { id=item.Id }) |
+            @if (!item.IsDelete) { 
+                @Html.ActionLink("删除", "NewsDelete", new { id=item.Id })
+            }
+        </td>
+    </tr>
+}
+
+</table>

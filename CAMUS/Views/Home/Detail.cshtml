@@ -1,0 +1,19 @@
+﻿@model CAMUS.Models.News
+@{
+    ViewBag.Title = "新闻中心";
+}
+
+<div class="entry-news-banner">
+    <div class="container">
+        <div class="entry-title">
+            <h1>新闻中心</h1>
+        </div>
+    </div>
+</div>
+<div class="container entry-new-content">
+    <h2>@Html.DisplayFor(model => model.Title)</h2>
+
+    <div class="entry-new-txt">
+        @Html.Raw(Model.Content)
+    </div>
+</div>

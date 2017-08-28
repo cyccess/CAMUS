@@ -1,0 +1,82 @@
+﻿@{
+    ViewBag.Title = "关于远流贸易";
+}
+<style>
+    .owl-theme .owl-controls {
+        position:absolute;right:15px;top:50%;margin-top:-20px;width:26px;
+    }
+        .owl-theme .owl-controls .owl-page span{background-color:#fff;}
+</style>
+<div class="entry-about-banner">
+   <div class="container">
+       <div class="entry-title">
+           <h1>关于远流</h1>
+       </div>
+   </div>
+</div>
+<div class="container">
+    <div class="entry-about-con">
+        <ul class="owl-carousel">
+            <li class="item">
+                <div class="entry-about-img">
+                    <img src="/images/a1.png" />
+                </div>
+                <div class="entry-about-txt">
+                    <span class="title">公司概况</span>
+                    <p>
+                        远流贸易（上海）有限公司是全球著名的法国卡慕酒业集团在中国的全资子公司。作为中国
+                        最大的外商独资高端酒类产品贸易公司之一，卡慕远流主要从事高品质烈酒和葡萄酒在中国市场的进口和营销业务；总部位于上海，并在北京、广州、深圳等地设有办事处，并建立覆盖全国的销售与分销网络。
+                    </p>
+                </div>
+            </li>
+            <li class="item">
+                <div class="entry-about-img">
+                    <img src="/images/a2.png" />
+                </div>
+                <div class="entry-about-txt">
+                    <span class="title">公司发展</span>
+                    <p>
+                        卡慕远流通过多样化的平台使中国消费者获得全面的奢华享受，自2007年成立以来，不仅与合作伙伴建立了强大的商业网络，并与之共同分享卡慕远流的愿景与价值观，至今全球已有多家知名葡萄酒和烈酒品牌成为我们的战略合作伙伴。2017年，卡慕远流与世界第六大高端烈酒集团金巴厘达成经销合作关系，成为其旗下品牌在中国国内市场的独家经销商。
+                    </p>
+                </div>
+            </li>
+            <li class="item">
+                <div class="entry-about-img">
+                    <img src="/images/a3.jpg" />
+                </div>
+                <div class="entry-about-txt">
+                    <span class="title">公司产品</span>
+                    <p>
+                        如今，卡慕远流已搭建起由干邑、雅文邑、威士忌、朗姆酒、利口酒和伏特加，以及新老
+                        世界葡萄酒等众多品类组成的国际酒业集团架构。作为行业内首屈一指的高端酒品进口公司，卡慕远流不断引入品质超卓的酒品，引领着中国消费者走向卓尔不群的高品质生活。
+                    </p>
+                </div>
+            </li>
+            <li class="item">
+                <div class="entry-about-img">
+                    <img src="/images/a4.png" />
+                </div>
+                <div class="entry-about-txt">
+                    <span class="title">公司新闻</span>
+                    <p>
+                        卡慕远流鼎力支持《男人风尚》八周年生日派对！ 5月18日的上海，沪上名流绅士蠢蠢欲动，准备奔赴一场城中潮流盛典——《男人风尚》杂志八周年生日派对。卡慕远流作为本次活动的独家酒水合作伙伴，为各路型男呈现了一场无与伦比的美酒大秀。
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+@section scripts{
+<script src="~/Scripts/owl-carousel/owl.carousel.min.js"></script>
+
+<script>
+    $(function () {
+        $(".owl-carousel").owlCarousel({
+            slideSpeed: 300,
+            paginationSpeed: 600,
+            singleItem: true,
+            autoPlay: true
+        });
+    });
+</script>
+}

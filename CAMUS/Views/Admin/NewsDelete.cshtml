@@ -1,0 +1,76 @@
+﻿@model CAMUS.Models.News
+
+@{
+    ViewBag.Title = "删除新闻";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>删除新闻</h2>
+@if (!Model.IsDelete)
+{
+<h3 class="text-danger">您确定要删除吗？</h3>
+}
+<div class="news-delete-wrap">
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Link)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Link)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            <img src="@Model.Image" alt="Alternate Text" width="200" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.Content)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            @if (!Model.IsDelete)
+            {
+                <input type="submit" value="删除" class="btn btn-default" /><span> |</span>
+            }
+            @Html.ActionLink("返回列表", "News")
+        </div>
+    }
+</div>

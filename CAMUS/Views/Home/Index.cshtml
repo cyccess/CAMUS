@@ -1,0 +1,48 @@
+﻿@model IEnumerable<CAMUS.Models.Banner>
+@{
+    ViewBag.Title = "首页";
+}
+<div class="flexslider">
+    <ul class="slides">
+        @foreach (var item in Model)
+        {
+        <li style="background:url(@item.Path) 50% 0 no-repeat;"></li>
+        }
+    </ul>
+</div>
+<div class="news-wrap">
+    <div class="container">
+        <h1>新闻中心</h1>
+        <a class="btn btn-gold" href="/home/news">查看更多</a>
+    </div>
+</div>
+
+
+<ul id="sm" class="sm">
+    <li><img src="/images/s01.jpg" alt="" /></li>
+    <li><img src="/images/s02.jpg" alt="" /></li>
+    <li><img src="/images/s03.jpg" alt="" /></li>
+    <li><img src="/images/s04.jpg" alt="" /></li>
+</ul>
+@section scripts{
+<script src="/Scripts/jquery.flexslider-min.js"></script>
+<script src="/Scripts/slider.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.flexslider').flexslider({
+            directionNav: true,
+            pauseOnAction: false
+        });
+
+        var initSlide= function () {
+            var w = $(window).width();
+            slideMenu.build('sm',(w / 4)+100,12,12);
+        };
+
+        initSlide();
+        $(window).resize(function () {
+            initSlide();
+        });
+    });
+</script>
+}

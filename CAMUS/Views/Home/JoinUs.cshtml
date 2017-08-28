@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "联系我们";
+}
+<link href="~/Content/red.css" rel="stylesheet" />
+<div class="entry-news-banner">
+    <div class="container">
+        <div class="entry-title">
+            <h1>联系我们</h1>
+        </div>
+    </div>
+</div>
+<div class="container entry-contact-wrap">
+    <div class="entry-dis-content">
+        <h1>我们的办公室</h1>
+    </div>
+    <div class="container entry-contact-content">
+    </div>
+</div>
+@section scripts{
+    <script src="~/Scripts/icheck.min.js"></script>
+    <script>/
+        $(function () {
+            $('input[type=radio]').iCheck({
+                checkboxClass: 'icheckbox_minimal-red',
+                radioClass: 'iradio_minimal-red',
+                increaseArea: '20%' // optional
+            });
+        })
+    </script>
+}

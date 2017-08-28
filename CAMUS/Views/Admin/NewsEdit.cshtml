@@ -1,0 +1,138 @@
+﻿@model CAMUS.Models.News
+
+@{
+    ViewBag.Title = "编辑新闻";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+<link href="~/Content/wysiwyg-editor.css" rel="stylesheet" />
+<link href="~/Content/editor.css" rel="stylesheet" />
+<h2>编辑新闻</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Author, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Author, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Author, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Link, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Link, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Link, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="form-upload" style="display: @(!string.IsNullOrEmpty(Model.Image) ? "none" : "")">
+                    <div class=" fileinput-button">
+                        <button class="btn btn-primary" type="button">
+                            上传图片
+                        </button>
+                        <input type="file" id="fileupload" name="newsImage" data-url="/admin/NewsImageUpload">
+                    </div>
+                    <div>
+                        @Html.HiddenFor(model => model.Image)
+                        @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+
+                <div class="form-img" style="display: @(!string.IsNullOrEmpty(Model.Image) ? "block" : "none");">
+                    <img src="@Model.Image" alt="Alternate Text" width="200" />
+                    <a href="javascript:;">重新上传</a>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Content, new { htmlAttributes = new { } })
+                @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="保存" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("返回列表", "News")
+</div>
+@section Scripts{
+    <script src="~/Scripts/wysiwyg.js"></script>
+    <script src="~/Scripts/wysiwyg-editor.js"></script>
+    <script src="~/Scripts/init-wysiwyg.js"></script>
+<script src="~/Scripts/jquery.ui.widget.js"></script>
+<script src="~/Scripts/jquery.iframe-transport.js"></script>
+<script src="~/Scripts/jquery.fileupload.js"></script>
+<script>
+    $(function () {
+        $("#fileupload").fileupload({
+            dataType: "json",
+            add: function (e, data) {
+                data.submit();
+            },
+            done: function (e, data) {
+                var result = data.result;
+                if (result.status === 170) {
+                    //上传失败
+                    // layer.msg(result.msg);
+                }
+                else {
+                    $(".form-upload").hide();
+                    var $img = $(".form-img");
+                    $img.show();
+                    $img.find("img").attr("src", result.path);
+                    $("#Image").val(result.path);
+                }
+            },
+            change: function (e, data) {
+                var check = true;
+                $.each(data.files, function (index, file) {
+                    if (file.size > 3000000) {
+                        check = false;
+                    }
+                });
+                if (!check) {
+                    alert("上传图片的不能大于3M，请重新上传！");
+                    return false;
+                }
+            }
+        });
+
+        $(".form-img a").on("click", function () {
+            $("#fileupload").click();
+        });
+    });
+</script>
+
+}
